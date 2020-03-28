@@ -8,7 +8,7 @@ const controls = [
     { label: 'Meat', type: 'meat' },
 ]
 const BuildControls = (props) => {
-    const { ingredientAdded, ingredientRemoved, disabled, totalPrice, purchasable } = props;
+    const { ingredientAdded, ingredientRemoved, disabled, totalPrice, purchasable, ordered } = props;
     return (
         <div className={classes.BuildControls}>
             <p>Current Price: <strong>{totalPrice.toFixed(2)}</strong></p>
@@ -19,9 +19,14 @@ const BuildControls = (props) => {
                     added={() => ingredientAdded(control.type)}
                     removed={() => ingredientRemoved(control.type)}
                     disabled={disabled[control.type]}
+
                 />
             ))}
-            <button className={classes.OrderButton} disabled={!purchasable}> Order Now </button>
+            <button
+                className={classes.OrderButton}
+                disabled={!purchasable}
+                onClick={ordered}
+            >Order Now </button>
         </div>
     );
 }
