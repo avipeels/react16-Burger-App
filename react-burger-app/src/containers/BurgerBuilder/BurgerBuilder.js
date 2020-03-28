@@ -3,7 +3,8 @@ import Aux from '../../hoc/Auxilary';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import { INGREDIENT_PRICE } from './constants';
-
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 class BurgerBuilder extends Component {
     constructor(props) {
         super(props);
@@ -63,7 +64,6 @@ class BurgerBuilder extends Component {
             ingredients: updatedIngredients,
         });
         this.updatePurchaseState(updatedIngredients);
-
     }
 
     render() {
@@ -75,6 +75,9 @@ class BurgerBuilder extends Component {
         }
         return (
             <Aux>
+                <Modal>
+                    <OrderSummary ingredients={this.state.ingredients} />
+                </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
